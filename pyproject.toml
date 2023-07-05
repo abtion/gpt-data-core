@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gpt_data_core"
+version = "0.0.1"
+authors = [
+  { name="Abtion" },
+]
+description = "A set of core functions handling Redis database operations for Redis' Vector Similarity Search projects in Abtion."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/abtion/gpt-data-core"
+"Bug Tracker" = "https://github.com/abtion/gpt-data-core/issues"
