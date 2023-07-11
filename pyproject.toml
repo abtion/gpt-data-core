@@ -4,12 +4,19 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gpt_data_core"
-version = "0.0.1"
+version = "0.0.62"
 authors = [
   { name="Abtion" },
 ]
 description = "A set of core functions handling Redis database operations for Redis' Vector Similarity Search projects in Abtion."
 readme = "README.md"
+dependencies = [
+  "python-dotenv",
+  "openai",
+  "redis",
+  "numpy",
+  "numpy",
+]
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
