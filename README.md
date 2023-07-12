@@ -26,6 +26,12 @@ Activate venv whenever working on this project:
 
 Your terminal will display the name of your venv when active: _(venv)_.
 
+Installing the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
 If any packages are installed/updated while developing, remember to freeze the package list:
 
 ```bash
