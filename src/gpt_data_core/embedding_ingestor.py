@@ -4,6 +4,7 @@ import numpy as np
 
 from gpt_data_core import redis_client
 from redis.commands.search.indexDefinition import IndexDefinition, IndexType
+from redis.client import Pipeline
 
 
 class EmbeddingIngestor():
@@ -38,12 +39,11 @@ class EmbeddingIngestor():
                 fields=schema, definition=definition)
 
     def insert_embedding(self,
+                         pipe: Pipeline,
                          file_path: str,
                          content: str,
                          embedding,
                          extraMapping: dict = None):
-
-        pipe = self.redis_client.pipeline()
 
         baseMapping = {
             "content": content,
