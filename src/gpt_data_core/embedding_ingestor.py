@@ -45,17 +45,20 @@ class EmbeddingIngestor():
 
         pipe = self.redis_client.pipeline()
 
-        updatedMapping = {
+        baseMapping = {
             "content": content,
             "vector": np.array(embedding).astype(np.float32).tobytes(),
             "tag": "openai",
             "filename": os.path.basename(file_path)
-        }.update(extraMapping)
+        }
+        if extraMapping is not None:
+            baseMapping = {**baseMapping,  **extraMapping}
 
         pipe.hset(
             f"{self.doc_prefix}{os.path.splitext(file_path)[0]}",
-            mapping=updatedMapping,
+            mapping=baseMapping,
         )
+
         print(f"Inserted {file_path}")
 
     def read_json_embedding(self, file_name: str):
