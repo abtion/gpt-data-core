@@ -21,7 +21,8 @@ python -m venv venv
 Activate venv whenever working on this project:
 
 ```bash
-. venv/scripts/activate
+. venv/scripts/activate (Windows)
+. venv/bin/activate (Mac)
 ```
 
 Your terminal will display the name of your venv when active: _(venv)_.
