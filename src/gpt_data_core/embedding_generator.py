@@ -43,7 +43,15 @@ class EmbeddingGenerator():
         )
 
     def process_all_files(self):
+        errors = []
         for root, _, files in os.walk(self.data_path):
             for file in files:
                 file_path = os.path.join(root, file)
-                self.process_file(file_path)
+                try:
+                    self.process_file(file_path)
+                except Exception as error:
+                    errors.append((file_path, error))
+        if len(errors) > 0:
+            print("\nERROR while processing files:")
+            for error in errors:
+                print(f"{error[0]}: '{error[1]}'\n")
