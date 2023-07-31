@@ -8,7 +8,6 @@ Ensure your .env variables are up to date with at least:
 - REDIS_PORT
 - REDIS_PASSWORD
 - OPENAI_API_KEY
-- DEFAULT_DATA_PATH
 
 ## Use a python virtual environment (venv)
 
@@ -55,7 +54,11 @@ from gpt_data_core import embedding_generator, config
 
 openAIConfig = config.Config()
 
-generator = embedding_generator.EmbeddingGenerator(api_key = openAIConfig.OPENAI_API_KEY)
+generator = embedding_generator.EmbeddingGenerator(
+    openAIConfig.OPENAI_API_KEY,
+    openAIConfig.DEFAULT_DATA_PATH,
+    openAIConfig.DEFAULT_TEMP_PATH
+)
 
-response = generator.call_openai_embedding_api("some-text")
+generator.process_all_files()
 ```

@@ -13,11 +13,15 @@ class EmbeddingIngestor():
                  redis_client: redis_client.RedisClient,
                  vector_dimensions: int,
                  index_name: str,
-                 doc_prefix: str):
+                 doc_prefix: str,
+                 data_path: str,
+                 temp_path: str):
         self.redis_client = redis_client
         self.vector_dimensions = vector_dimensions
         self.index_name = index_name
         self.doc_prefix = doc_prefix
+        self.data_path = data_path
+        self.temp_path = temp_path
 
     def delete_index(self):
         try:
@@ -66,3 +70,26 @@ class EmbeddingIngestor():
             json_data = json.load(f)
 
         return json_data["data"][0]["embedding"]
+
+    def collect_embedding_and_data_paths(self):
+        result = []
+        for root, _, embeddings in os.walk(self.temp_path):
+            for embedding in embeddings:
+                embedding_path = os.path.join(root, embedding)
+                if embedding_path.endswith(".json"):
+                    found_match = False
+                    for extension in [".md", ".txt"]:
+
+                        data_path = self.data_path + \
+                            os.path.splitext(embedding_path.removeprefix(
+                                self.temp_path))[0] + extension
+
+                        if (os.path.isfile(data_path)):
+                            found_match = True
+                            result.append((embedding_path, data_path))
+                            break
+
+                    if not found_match:
+                        print(
+                            f"unable to match embedding with data file: {embedding}")
+        return result
