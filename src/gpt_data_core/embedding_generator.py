@@ -46,11 +46,12 @@ class EmbeddingGenerator():
         errors = []
         for root, _, files in os.walk(self.data_path):
             for file in files:
-                file_path = os.path.join(root, file)
-                try:
-                    self.process_file(file_path)
-                except Exception as error:
-                    errors.append((file_path, error))
+                if (os.path.splitext(file_path)[1] != ".json"):
+                    file_path = os.path.join(root, file)
+                    try:
+                        self.process_file(file_path)
+                    except Exception as error:
+                        errors.append((file_path, error))
         if len(errors) > 0:
             print("\nERROR while processing files:")
             for error in errors:
