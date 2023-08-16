@@ -1,4 +1,18 @@
 # gpt-data-core
+When we start a new GPT project and we need to create a new Redis DB and populate it with data - we need to follow these steps:
+
+1. Copy locally an existing gpt-data project. For example gpt-data-kvindekroppen
+2. Rename it - so it has the name of the new project you are creating. For example gpt-data-infare
+3. Delete the data folder with its content and create an empty data folder in the root of the project
+4. Delete the data-temp folder with its content and create an empty data-temp folder in the root of the project
+5. Delete the venv folder(if there is one)
+6. Go to the folder on your computer and allow the hidden files to be seen. Delete the .git folder. This will remove the link between the old github respository and the project.
+7. Go to Abtions github account and click Create New Repository
+8. Add name
+9. Leave all the rest as it is and click Create repository
+10. Go to Redis online, login with Abtions account and create a new DB
+11. Go back to VSCode where you have the new gpt-data project created and update the .env file with the new Redis credentials
+12. Follow the steps below, to create embeddings and ingest them in the redis DB
 
 ## Environment variables
 
