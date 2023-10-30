@@ -25,13 +25,13 @@ Ensure your .env variables are up to date with at least:
 
 ## Use a python virtual environment (venv)
 
-If no venv exists:
+Create a venv folder, if there is no venv folder in the root directory of the project. If you have the venv folder, you do not need to create one. OBS: If you get an error in one of the following steps, delete the venv folder and create a new one with the command below:
 
 ```bash
 python -m venv venv
 ```
 
-Activate venv whenever working on this project:
+Activate venv whenever working on this project. OBS: two different commands below, depending on your operating system:
 
 Windows:
 
