@@ -1,4 +1,5 @@
 # gpt-data-core
+
 When we start a new GPT project and we need to create a new Redis DB and populate it with data - we need to follow these steps:
 
 1. Copy locally an existing gpt-data project. For example gpt-data-kvindekroppen
@@ -68,6 +69,17 @@ pip install git+https://github.com/abtion/gpt-data-core.git
 ```
 
 ## Example use of gpt-data-core
+
+```python
+# token_division_list.py
+from gpt_data_core import token_division_list
+
+division_list = token_division_list.TokenDivisionList(
+  model="gpt-3.5-turbo-16k",
+  max_tokens=8191
+)
+division_list.process_files("data")
+```
 
 ```python
 # create_embeddings.py
